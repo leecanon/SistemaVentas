@@ -1241,7 +1241,7 @@ public class Sistema extends javax.swing.JFrame {
 
     private void tablaProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProveedorMouseClicked
         // TODO add your handling code here:
-        asdsa 
+        
     }//GEN-LAST:event_tablaProveedorMouseClicked
 
     /**
