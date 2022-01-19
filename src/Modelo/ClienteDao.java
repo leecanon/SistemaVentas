@@ -40,6 +40,49 @@ public class ClienteDao {
        }
        return ListaCl;
    }
+    
+    public boolean ModificarCliente(Cliente cl){
+       String sql = "UPDATE clientes SET dni=?, nombre=?, telefono=?, direccion=?, razon=? WHERE id=?";
+       try {
+           ps = con.prepareStatement(sql);   
+           ps.setString(1, cl.getDni());
+           ps.setString(2, cl.getNombre());
+           ps.setString(3, cl.getTelefono());
+           ps.setString(4, cl.getDireccion());
+           ps.setString(5, cl.getRazon());
+           ps.setInt(6, cl.getId());
+           ps.execute();
+           return true;
+       } catch (SQLException e) {
+           System.out.println(e.toString());
+           return false;
+       }finally{
+           try {
+               con.close();
+           } catch (SQLException e) {
+               System.out.println(e.toString());
+           }
+       }
+   }
+    
+    public boolean EliminarCliente(int id){
+       String sql = "DELETE FROM clientes WHERE id = ?";
+       try {
+           ps = con.prepareStatement(sql);
+           ps.setInt(1, id);    
+           ps.execute();
+           return true;
+       } catch (SQLException e) {
+           System.out.println(e.toString());
+           return false;
+       }finally{
+           try {
+               con.close();
+           } catch (SQLException ex) {
+               System.out.println(ex.toString());
+           }
+       }
+   }
                
     public boolean RegistrarCliente(Cliente cl){
         String sql = "INSERT INTO clientes (dni, nombre, telefono, direccion, razon) VALUES (?,?,?,?,?)";

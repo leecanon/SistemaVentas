@@ -16,6 +16,7 @@ public class Sistema extends javax.swing.JFrame {
     public Sistema() {
         initComponents();
         this.setLocationRelativeTo(null);
+        txtIdCliente.setVisible(false);
     }
     
     public void ListarCliente() {
@@ -456,6 +457,11 @@ public class Sistema extends javax.swing.JFrame {
                 "ID", "DNI", "NOMBRE", "TELEFONO", "DIRECCIÓN", "RAZON SOCIAL"
             }
         ));
+        tablaCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaClienteMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tablaCliente);
         if (tablaCliente.getColumnModel().getColumnCount() > 0) {
             tablaCliente.getColumnModel().getColumn(0).setPreferredWidth(10);
@@ -484,9 +490,19 @@ public class Sistema extends javax.swing.JFrame {
 
         btnElminarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/eliminar.png"))); // NOI18N
         btnElminarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnElminarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnElminarClienteActionPerformed(evt);
+            }
+        });
 
         btnNuevoCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/nuevo.png"))); // NOI18N
         btnNuevoCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNuevoCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoClienteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -589,16 +605,17 @@ public class Sistema extends javax.swing.JFrame {
 
             },
             new String [] {
-                "DNI/RUC", "NOMBRE", "TELEFONO", "DIRECCIÓN", "RAZON SOCIAL"
+                "ID", "DNI/RUC", "NOMBRE", "TELEFONO", "DIRECCIÓN", "RAZON SOCIAL"
             }
         ));
         jScrollPane3.setViewportView(tablaProveedor);
         if (tablaProveedor.getColumnModel().getColumnCount() > 0) {
-            tablaProveedor.getColumnModel().getColumn(0).setPreferredWidth(50);
-            tablaProveedor.getColumnModel().getColumn(1).setPreferredWidth(150);
-            tablaProveedor.getColumnModel().getColumn(2).setPreferredWidth(50);
-            tablaProveedor.getColumnModel().getColumn(3).setPreferredWidth(80);
+            tablaProveedor.getColumnModel().getColumn(0).setPreferredWidth(6);
+            tablaProveedor.getColumnModel().getColumn(1).setPreferredWidth(50);
+            tablaProveedor.getColumnModel().getColumn(2).setPreferredWidth(150);
+            tablaProveedor.getColumnModel().getColumn(3).setPreferredWidth(50);
             tablaProveedor.getColumnModel().getColumn(4).setPreferredWidth(80);
+            tablaProveedor.getColumnModel().getColumn(5).setPreferredWidth(80);
         }
 
         btnEliminarProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/eliminar.png"))); // NOI18N
@@ -721,16 +738,17 @@ public class Sistema extends javax.swing.JFrame {
 
             },
             new String [] {
-                "CODIGO", "DESCRIPCIÓN", "STOCK ", "PRECIO", "PROVEEDOR"
+                "ID", "CODIGO", "DESCRIPCIÓN", "STOCK ", "PRECIO", "PROVEEDOR"
             }
         ));
         jScrollPane4.setViewportView(tablaProducto);
         if (tablaProducto.getColumnModel().getColumnCount() > 0) {
-            tablaProducto.getColumnModel().getColumn(0).setPreferredWidth(20);
-            tablaProducto.getColumnModel().getColumn(1).setPreferredWidth(150);
-            tablaProducto.getColumnModel().getColumn(2).setPreferredWidth(40);
-            tablaProducto.getColumnModel().getColumn(3).setPreferredWidth(50);
-            tablaProducto.getColumnModel().getColumn(4).setPreferredWidth(80);
+            tablaProducto.getColumnModel().getColumn(0).setPreferredWidth(6);
+            tablaProducto.getColumnModel().getColumn(1).setPreferredWidth(20);
+            tablaProducto.getColumnModel().getColumn(2).setPreferredWidth(150);
+            tablaProducto.getColumnModel().getColumn(3).setPreferredWidth(40);
+            tablaProducto.getColumnModel().getColumn(4).setPreferredWidth(50);
+            tablaProducto.getColumnModel().getColumn(5).setPreferredWidth(80);
         }
 
         btnGuardarProduc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/GuardarTodo.png"))); // NOI18N
@@ -875,7 +893,7 @@ public class Sistema extends javax.swing.JFrame {
         ));
         jScrollPane5.setViewportView(tablaVentas);
         if (tablaVentas.getColumnModel().getColumnCount() > 0) {
-            tablaVentas.getColumnModel().getColumn(0).setPreferredWidth(20);
+            tablaVentas.getColumnModel().getColumn(0).setPreferredWidth(6);
             tablaVentas.getColumnModel().getColumn(1).setPreferredWidth(80);
             tablaVentas.getColumnModel().getColumn(2).setPreferredWidth(80);
             tablaVentas.getColumnModel().getColumn(3).setPreferredWidth(50);
@@ -1071,13 +1089,14 @@ public class Sistema extends javax.swing.JFrame {
             cl.setDireccion(txtDireccionCliente.getText());
             cl.setRazon(txtRazonCliente.getText());
             client.RegistrarCliente(cl);
-            JOptionPane.showMessageDialog(null, "Cliente Registrado");
-            /*LimpiarTable();
+            LimpiarTabla();
             LimpiarCliente();
             ListarCliente();
-            btnEditarCliente.setEnabled(false);
-            btnEliminarCliente.setEnabled(false);
-            btnGuardarCliente.setEnabled(true);*/
+            JOptionPane.showMessageDialog(null, "Cliente Registrado");
+       
+            //btnEditarCliente.setEnabled(false);
+            //btnEliminarCliente.setEnabled(false);
+            btnGuardarCliente.setEnabled(true);
         } else {
             JOptionPane.showMessageDialog(null, "Los campos estan vacios");
         }
@@ -1093,8 +1112,60 @@ public class Sistema extends javax.swing.JFrame {
 
     private void btnActualizarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarClienteActionPerformed
         // TODO add your handling code here:
+        if ("".equals(txtIdCliente.getText())) {
+            JOptionPane.showMessageDialog(null, "seleccione una fila");
+        } else {
+
+            if (!"".equals(txtDniCliente.getText()) || !"".equals(txtNombreCliente.getText()) || !"".equals(txtTelefonoCliente.getText()) || !"".equals(txtDireccionCliente.getText()) || !"".equals(txtRazonCliente.getText()) ) {
+                cl.setDni(txtDniCliente.getText());
+                cl.setNombre(txtNombreCliente.getText());
+                cl.setTelefono(txtTelefonoCliente.getText());
+                cl.setDireccion(txtDireccionCliente.getText());
+                cl.setRazon(txtRazonCliente.getText());
+                cl.setId(Integer.parseInt(txtIdCliente.getText()));
+                client.ModificarCliente(cl);
+                JOptionPane.showMessageDialog(null, "Cliente Modificado");
+                LimpiarTabla();
+                LimpiarCliente();
+                ListarCliente();
+            } else {
+                JOptionPane.showMessageDialog(null, "Los campos estan vacios");
+            }
+        }
         
     }//GEN-LAST:event_btnActualizarClienteActionPerformed
+
+    private void tablaClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClienteMouseClicked
+        // TODO add your handling code here:
+        int fila = tablaCliente.rowAtPoint(evt.getPoint());
+        txtIdCliente.setText(tablaCliente.getValueAt(fila, 0).toString());
+        txtDniCliente.setText(tablaCliente.getValueAt(fila, 1).toString());
+        txtNombreCliente.setText(tablaCliente.getValueAt(fila, 2).toString());
+        txtTelefonoCliente.setText(tablaCliente.getValueAt(fila, 3).toString());
+        txtDireccionCliente.setText(tablaCliente.getValueAt(fila, 4).toString());
+        txtRazonCliente.setText(tablaCliente.getValueAt(fila, 5).toString());
+    }//GEN-LAST:event_tablaClienteMouseClicked
+
+    private void btnElminarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnElminarClienteActionPerformed
+        // TODO add your handling code here:
+        if (!"".equals(txtIdCliente.getText())) {
+            int pregunta = JOptionPane.showConfirmDialog(null, "Esta seguro de eliminar");
+            if (pregunta == 0) {
+                int id = Integer.parseInt(txtIdCliente.getText());
+                client.EliminarCliente(id);
+                LimpiarTabla();
+                LimpiarCliente();
+                ListarCliente();
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecciona una fila");
+        }
+    }//GEN-LAST:event_btnElminarClienteActionPerformed
+
+    private void btnNuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoClienteActionPerformed
+        // TODO add your handling code here:
+        LimpiarCliente();
+    }//GEN-LAST:event_btnNuevoClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1241,4 +1312,117 @@ public class Sistema extends javax.swing.JFrame {
     private javax.swing.JTextField txtTelefonoCliente;
     private javax.swing.JTextField txtTelefonoProveedor;
     // End of variables declaration//GEN-END:variables
+    private void LimpiarCliente() {
+        txtIdCliente.setText("");
+        txtDniCliente.setText("");
+        txtNombreCliente.setText("");
+        txtTelefonoCliente.setText("");
+        txtDireccionCliente.setText("");
+        txtRazonCliente.setText("");
+    }
+
+    /* 
+    
+    private void LimpiarProveedor() {
+        txtIdProveedor.setText("");
+        txtRucProveedor.setText("");
+        txtNombreproveedor.setText("");
+        txtTelefonoProveedor.setText("");
+        txtDireccionProveedor.setText("");
+    }
+
+    private void LimpiarProductos() {
+        txtIdPro.setText("");
+        txtCodigoPro.setText("");
+        cbxProveedorPro.setSelectedItem(null);
+        txtDesPro.setText("");
+        txtCantPro.setText("");
+        txtPrecioPro.setText("");
+    }
+
+    private void TotalPagar() {
+        Totalpagar = 0.00;
+        int numFila = TableVenta.getRowCount();
+        for (int i = 0; i < numFila; i++) {
+            double cal = Double.parseDouble(String.valueOf(TableVenta.getModel().getValueAt(i, 4)));
+            Totalpagar = Totalpagar + cal;
+        }
+        LabelTotal.setText(String.format("%.2f", Totalpagar));
+    }
+
+    private void LimparVenta() {
+        txtCodigoVenta.setText("");
+        txtDescripcionVenta.setText("");
+        txtCantidadVenta.setText("");
+        txtStockDisponible.setText("");
+        txtPrecioVenta.setText("");
+        txtIdVenta.setText("");
+    }
+
+    private void RegistrarVenta() {
+        int cliente = Integer.parseInt(txtIdCV.getText());
+        String vendedor = LabelVendedor.getText();
+        double monto = Totalpagar;
+        v.setCliente(cliente);
+        v.setVendedor(vendedor);
+        v.setTotal(monto);
+        v.setFecha(fechaActual);
+        Vdao.RegistrarVenta(v);
+    }
+
+    private void RegistrarDetalle() {
+        int id = Vdao.IdVenta();
+        for (int i = 0; i < TableVenta.getRowCount(); i++) {
+            int id_pro = Integer.parseInt(TableVenta.getValueAt(i, 0).toString());
+            int cant = Integer.parseInt(TableVenta.getValueAt(i, 2).toString());
+            double precio = Double.parseDouble(TableVenta.getValueAt(i, 3).toString());
+            Dv.setId_pro(id_pro);
+            Dv.setCantidad(cant);
+            Dv.setPrecio(precio);
+            Dv.setId(id);
+            Vdao.RegistrarDetalle(Dv);
+
+        }
+        int cliente = Integer.parseInt(txtIdCV.getText());
+        Vdao.pdfV(id, cliente, Totalpagar, LabelVendedor.getText());
+    }
+
+    private void ActualizarStock() {
+        for (int i = 0; i < TableVenta.getRowCount(); i++) {
+            int id = Integer.parseInt(TableVenta.getValueAt(i, 0).toString());
+            int cant = Integer.parseInt(TableVenta.getValueAt(i, 2).toString());
+            pro = proDao.BuscarId(id);
+            int StockActual = pro.getStock() - cant;
+            Vdao.ActualizarStock(StockActual, id);
+
+        }
+    }
+
+    private void LimpiarTableVenta() {
+        tmp = (DefaultTableModel) TableVenta.getModel();
+        int fila = TableVenta.getRowCount();
+        for (int i = 0; i < fila; i++) {
+            tmp.removeRow(0);
+        }
+    }
+
+    private void LimpiarClienteventa() {
+        txtRucVenta.setText("");
+        txtNombreClienteventa.setText("");
+        txtIdCV.setText("");
+    }
+    private void nuevoUsuario(){
+        txtNombre.setText("");
+        txtCorreo.setText("");
+        txtPass.setText("");
+    }
+    private void llenarProveedor(){
+        List<Proveedor> lista = PrDao.ListarProveedor();
+        for (int i = 0; i < lista.size(); i++) {
+            int id = lista.get(i).getId();
+            String nombre = lista.get(i).getNombre();
+            cbxProveedorPro.addItem(new Combo(id, nombre));
+        }
+    } */
+    
 }
