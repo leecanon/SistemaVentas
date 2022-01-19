@@ -48,9 +48,9 @@ public class ProductosDao {
         }
     }
     
-   /* public List ListarProductos(){
+   public List ListarProductos(){
        List<Productos> Listapro = new ArrayList();
-       String sql = "SELECT pr.id AS id_proveedor, pr.nombre AS nombre_proveedor, p.* FROM proveedor pr INNER JOIN productos p ON pr.id = p.proveedor ORDER BY p.id DESC";
+       String sql = "SELECT * FROM productos";
        try {
            con = cn.getConnection();
            ps = con.prepareStatement(sql);
@@ -60,8 +60,7 @@ public class ProductosDao {
                pro.setId(rs.getInt("id"));
                pro.setCodigo(rs.getString("codigo"));
                pro.setNombre(rs.getString("nombre"));
-               pro.setProveedor(rs.getInt("id_proveedor"));
-               pro.setProveedorPro(rs.getString("nombre_proveedor"));
+               pro.setProveedor(rs.getString("proveedor"));
                pro.setStock(rs.getInt("stock"));
                pro.setPrecio(rs.getDouble("precio"));
                Listapro.add(pro);
@@ -71,6 +70,7 @@ public class ProductosDao {
        }
        return Listapro;
    }
+   /*
     public boolean EliminarProductos(int id){
        String sql = "DELETE FROM productos WHERE id = ?";
        try {
