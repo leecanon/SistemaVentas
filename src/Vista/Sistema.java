@@ -882,6 +882,11 @@ public class Sistema extends javax.swing.JFrame {
 
         btnEliminarProduc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/eliminar.png"))); // NOI18N
         btnEliminarProduc.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEliminarProduc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarProducActionPerformed(evt);
+            }
+        });
 
         cbxProveedorProduc.setEditable(true);
         cbxProveedorProduc.addActionListener(new java.awt.event.ActionListener() {
@@ -1428,6 +1433,22 @@ public class Sistema extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tablaProductoMouseClicked
 
+    private void btnEliminarProducActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProducActionPerformed
+        // TODO add your handling code here:
+        if (!"".equals(txtIdProd.getText())) {
+            int pregunta = JOptionPane.showConfirmDialog(null, "Esta seguro de eliminar");
+            if (pregunta == 0) {
+                int id = Integer.parseInt(txtIdProd.getText());
+                proDao.EliminarProductos(id);
+                LimpiarTabla();
+                LimpiarProductos();
+                ListarProductos();
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecciona una fila");
+        }
+    }//GEN-LAST:event_btnEliminarProducActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1593,16 +1614,16 @@ public class Sistema extends javax.swing.JFrame {
         txtRazonProveedor.setText("");
     }
     
-    /* 
+    
     private void LimpiarProductos() {
-        txtIdPro.setText("");
-        txtCodigoPro.setText("");
-        cbxProveedorPro.setSelectedItem(null);
-        txtDesPro.setText("");
-        txtCantPro.setText("");
-        txtPrecioPro.setText("");
+        txtIdProd.setText("");
+        txtCodigoProduc.setText("");
+        cbxProveedorProduc.setSelectedItem(null);
+        txtDescripcionProduc.setText("");
+        txtCantidadProduc.setText("");
+        txtPrecioProduc.setText("");
     }
-
+    /*     
     private void TotalPagar() {
         Totalpagar = 0.00;
         int numFila = TableVenta.getRowCount();

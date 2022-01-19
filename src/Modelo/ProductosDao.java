@@ -70,7 +70,7 @@ public class ProductosDao {
        }
        return Listapro;
    }
-   /*
+   
     public boolean EliminarProductos(int id){
        String sql = "DELETE FROM productos WHERE id = ?";
        try {
