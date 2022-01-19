@@ -1228,6 +1228,9 @@ public class Sistema extends javax.swing.JFrame {
             pr.setDireccion(txtDireccionProveedor.getText());
             pr.setRazon(txtRazonProveedor.getText());
             PrDao.RegistrarProveedor(pr);
+            LimpiarTabla();
+            ListarProveedor();
+            LimpiarProveedor();
             JOptionPane.showMessageDialog(null, "Proveedor Registrado");
         } else {
             JOptionPane.showMessageDialog(null, "Los campos esta vacios");
@@ -1268,7 +1271,7 @@ public class Sistema extends javax.swing.JFrame {
                 PrDao.EliminarProveedor(id);
                 LimpiarTabla();
                 ListarProveedor();
-                //LimpiarProveedor();
+                LimpiarProveedor();
             }
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione una fila");
@@ -1429,16 +1432,18 @@ public class Sistema extends javax.swing.JFrame {
         txtRazonCliente.setText("");
     }
 
-    /* 
+    
     
     private void LimpiarProveedor() {
         txtIdProveedor.setText("");
         txtRucProveedor.setText("");
-        txtNombreproveedor.setText("");
+        txtNombreProveedor.setText("");
         txtTelefonoProveedor.setText("");
         txtDireccionProveedor.setText("");
+        txtRazonProveedor.setText("");
     }
-
+    
+    /* 
     private void LimpiarProductos() {
         txtIdPro.setText("");
         txtCodigoPro.setText("");
