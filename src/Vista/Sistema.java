@@ -39,6 +39,22 @@ public class Sistema extends javax.swing.JFrame {
         tablaCliente.setModel(modelo);
 
     }
+    public void ListarProveedor() {
+        List<Proveedor> ListarPr = PrDao.ListarProveedor();
+        modelo = (DefaultTableModel) tablaProveedor.getModel();
+        Object[] ob = new Object[6];
+        for (int i = 0; i < ListarPr.size(); i++) {
+            ob[0] = ListarPr.get(i).getId();
+            ob[1] = ListarPr.get(i).getRuc();
+            ob[2] = ListarPr.get(i).getNombre();
+            ob[3] = ListarPr.get(i).getTelefono();
+            ob[4] = ListarPr.get(i).getDireccion();
+            ob[5] = ListarPr.get(i).getRazon();
+            modelo.addRow(ob);
+        }
+        tablaProveedor.setModel(modelo);
+
+    }
     
     public void LimpiarTabla() {
         for (int i = 0; i < modelo.getRowCount(); i++) {
@@ -184,6 +200,11 @@ public class Sistema extends javax.swing.JFrame {
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/proveedor.png"))); // NOI18N
         jButton3.setText("Proveedor");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/producto.png"))); // NOI18N
         jButton4.setText("Productos");
@@ -618,6 +639,11 @@ public class Sistema extends javax.swing.JFrame {
                 "ID", "DNI/RUC", "NOMBRE", "TELEFONO", "DIRECCIÓN", "RAZON SOCIAL"
             }
         ));
+        tablaProveedor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaProveedorMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tablaProveedor);
         if (tablaProveedor.getColumnModel().getColumnCount() > 0) {
             tablaProveedor.getColumnModel().getColumn(0).setPreferredWidth(6);
@@ -1205,6 +1231,18 @@ public class Sistema extends javax.swing.JFrame {
     private void txtRucProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRucProveedorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtRucProveedorActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+         // TODO add your handling code here:
+        LimpiarTabla();
+        ListarProveedor();
+        jTabbedPane1.setSelectedIndex(2);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void tablaProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProveedorMouseClicked
+        // TODO add your handling code here:
+        asdsa 
+    }//GEN-LAST:event_tablaProveedorMouseClicked
 
     /**
      * @param args the command line arguments
