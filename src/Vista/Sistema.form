@@ -1047,6 +1047,9 @@
                   <Color id="Cursor de Mano"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNuevoProveedorActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnActualizarProveedor">
               <Properties>
@@ -1057,6 +1060,9 @@
                   <Color id="Cursor de Mano"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActualizarProveedorActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnGuardarProveedor">
               <Properties>

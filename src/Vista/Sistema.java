@@ -665,9 +665,19 @@ public class Sistema extends javax.swing.JFrame {
 
         btnNuevoProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/nuevo.png"))); // NOI18N
         btnNuevoProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNuevoProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoProveedorActionPerformed(evt);
+            }
+        });
 
         btnActualizarProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Actualizar (2).png"))); // NOI18N
         btnActualizarProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnActualizarProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarProveedorActionPerformed(evt);
+            }
+        });
 
         btnGuardarProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/GuardarTodo.png"))); // NOI18N
         btnGuardarProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -1277,6 +1287,35 @@ public class Sistema extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Seleccione una fila");
         }
     }//GEN-LAST:event_btnEliminarProveedorActionPerformed
+
+    private void btnActualizarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarProveedorActionPerformed
+        // TODO add your handling code here:
+        if ("".equals(txtIdProveedor.getText())) {
+            JOptionPane.showMessageDialog(null, "Seleecione una fila");
+        } else {
+            if (!"".equals(txtRucProveedor.getText()) || !"".equals(txtNombreProveedor.getText()) || !"".equals(txtTelefonoProveedor.getText()) || !"".equals(txtDireccionProveedor.getText()) || !"".equals(txtRazonProveedor.getText()) ) {
+                pr.setRuc(txtRucProveedor.getText());
+                pr.setNombre(txtNombreProveedor.getText());
+                pr.setTelefono(txtTelefonoProveedor.getText());
+                pr.setDireccion(txtDireccionProveedor.getText());
+                pr.setRazon(txtRazonProveedor.getText());
+                pr.setId(Integer.parseInt(txtIdProveedor.getText()));
+                PrDao.ModificarProveedor(pr);
+                JOptionPane.showMessageDialog(null, "Proveedor Modificado");
+                LimpiarTabla();
+                ListarProveedor();
+                LimpiarProveedor();
+                /*btnEditarProveedor.setEnabled(false);
+                btnEliminarProveedor.setEnabled(false);
+                btnguardarProveedor.setEnabled(true);*/
+            }
+        }
+    }//GEN-LAST:event_btnActualizarProveedorActionPerformed
+
+    private void btnNuevoProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoProveedorActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnNuevoProveedorActionPerformed
 
     /**
      * @param args the command line arguments
