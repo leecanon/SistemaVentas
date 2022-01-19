@@ -1314,7 +1314,7 @@ public class Sistema extends javax.swing.JFrame {
 
     private void btnNuevoProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoProveedorActionPerformed
         // TODO add your handling code here:
-        
+        LimpiarProveedor();
     }//GEN-LAST:event_btnNuevoProveedorActionPerformed
 
     /**
