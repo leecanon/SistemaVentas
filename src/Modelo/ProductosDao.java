@@ -89,14 +89,14 @@ public class ProductosDao {
            }
        }
    }
-    /*
+    
     public boolean ModificarProductos(Productos pro){
        String sql = "UPDATE productos SET codigo=?, nombre=?, proveedor=?, stock=?, precio=? WHERE id=?";
        try {
            ps = con.prepareStatement(sql);
            ps.setString(1, pro.getCodigo());
            ps.setString(2, pro.getNombre());
-           ps.setInt(3, pro.getProveedor());
+           ps.setString(3, pro.getProveedor());
            ps.setInt(4, pro.getStock());
            ps.setDouble(5, pro.getPrecio());
            ps.setInt(6, pro.getId());
@@ -113,7 +113,7 @@ public class ProductosDao {
            }
        }
    }
-   
+   /*
     public Productos BuscarPro(String cod){
         Productos producto = new Productos();
         String sql = "SELECT * FROM productos WHERE codigo = ?";

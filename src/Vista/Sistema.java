@@ -879,6 +879,11 @@ public class Sistema extends javax.swing.JFrame {
 
         btnActualizarProduc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Actualizar (2).png"))); // NOI18N
         btnActualizarProduc.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnActualizarProduc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarProducActionPerformed(evt);
+            }
+        });
 
         btnEliminarProduc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/eliminar.png"))); // NOI18N
         btnEliminarProduc.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -1448,6 +1453,28 @@ public class Sistema extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecciona una fila");
         }
     }//GEN-LAST:event_btnEliminarProducActionPerformed
+
+    private void btnActualizarProducActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarProducActionPerformed
+        // TODO add your handling code here:
+        if ("".equals(txtIdProd.getText())) {
+            JOptionPane.showMessageDialog(null, "Seleecione una fila");
+        } else {
+            if (!"".equals(txtCodigoProduc.getText()) || !"".equals(txtDescripcionProduc.getText()) || !"".equals(txtCantidadProduc.getText()) || !"".equals(txtPrecioProduc.getText())) {
+                pro.setCodigo(txtCodigoProduc.getText());
+                pro.setNombre(txtDescripcionProduc.getText());
+                pro.setProveedor(cbxProveedorProduc.getSelectedItem().toString());
+                pro.setStock(Integer.parseInt(txtCantidadProduc.getText()));
+                pro.setPrecio(Double.parseDouble(txtPrecioProduc.getText()));
+                pro.setId(Integer.parseInt(txtIdProd.getText()));
+                proDao.ModificarProductos(pro);
+                JOptionPane.showMessageDialog(null, "Producto Modificado");
+                LimpiarTabla();
+                ListarProductos();
+                LimpiarProductos();
+                //cbxProveedorPro.removeAllItems();
+            }
+        }
+    }//GEN-LAST:event_btnActualizarProducActionPerformed
 
     /**
      * @param args the command line arguments
