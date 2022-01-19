@@ -21,6 +21,7 @@ public class Sistema extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         txtIdCliente.setVisible(false);
+        txtIdProveedor.setVisible(false);
     }
     
     public void ListarCliente() {
@@ -656,6 +657,11 @@ public class Sistema extends javax.swing.JFrame {
 
         btnEliminarProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/eliminar.png"))); // NOI18N
         btnEliminarProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEliminarProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarProveedorActionPerformed(evt);
+            }
+        });
 
         btnNuevoProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/nuevo.png"))); // NOI18N
         btnNuevoProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -1241,8 +1247,33 @@ public class Sistema extends javax.swing.JFrame {
 
     private void tablaProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProveedorMouseClicked
         // TODO add your handling code here:
-        
+        /*btnEditarProveedor.setEnabled(true);
+        btnEliminarProveedor.setEnabled(true);
+        btnguardarProveedor.setEnabled(false);*/
+        int fila = tablaProveedor.rowAtPoint(evt.getPoint());
+        txtIdProveedor.setText(tablaProveedor.getValueAt(fila, 0).toString());
+        txtRucProveedor.setText(tablaProveedor.getValueAt(fila, 1).toString());
+        txtNombreProveedor.setText(tablaProveedor.getValueAt(fila, 2).toString());
+        txtTelefonoProveedor.setText(tablaProveedor.getValueAt(fila, 3).toString());
+        txtDireccionProveedor.setText(tablaProveedor.getValueAt(fila, 4).toString());
+        txtRazonProveedor.setText(tablaProveedor.getValueAt(fila, 5).toString());
     }//GEN-LAST:event_tablaProveedorMouseClicked
+
+    private void btnEliminarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProveedorActionPerformed
+        // TODO add your handling code here:
+        if (!"".equals(txtIdProveedor.getText())) {
+            int pregunta = JOptionPane.showConfirmDialog(null, "Esta seguro de eliminar");
+            if (pregunta == 0) {
+                int id = Integer.parseInt(txtIdProveedor.getText());
+                PrDao.EliminarProveedor(id);
+                LimpiarTabla();
+                ListarProveedor();
+                //LimpiarProveedor();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione una fila");
+        }
+    }//GEN-LAST:event_btnEliminarProveedorActionPerformed
 
     /**
      * @param args the command line arguments
