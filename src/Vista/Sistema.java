@@ -41,7 +41,7 @@ public class Sistema extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         txtIdCliente.setVisible(false);
         txtIdProveedor.setVisible(false);
-        
+        proDao.ConsultarProveedor(cbxProveedorProduc);
     }
     
     public void ListarCliente() {
