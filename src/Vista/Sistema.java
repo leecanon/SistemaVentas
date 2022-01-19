@@ -3,6 +3,8 @@ package Vista;
 
 import Modelo.Cliente;
 import Modelo.ClienteDao;
+import Modelo.Proveedor;
+import Modelo.ProveedorDao;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -11,6 +13,8 @@ public class Sistema extends javax.swing.JFrame {
     
     Cliente cl = new Cliente();
     ClienteDao client = new ClienteDao();
+    Proveedor pr = new Proveedor();
+    ProveedorDao PrDao = new ProveedorDao();
     DefaultTableModel modelo = new DefaultTableModel();
             
     public Sistema() {
@@ -600,6 +604,12 @@ public class Sistema extends javax.swing.JFrame {
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel21.setText("Razon social: ");
 
+        txtRucProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRucProveedorActionPerformed(evt);
+            }
+        });
+
         tablaProveedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -629,6 +639,11 @@ public class Sistema extends javax.swing.JFrame {
 
         btnGuardarProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/GuardarTodo.png"))); // NOI18N
         btnGuardarProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGuardarProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarProveedorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -1166,6 +1181,30 @@ public class Sistema extends javax.swing.JFrame {
         // TODO add your handling code here:
         LimpiarCliente();
     }//GEN-LAST:event_btnNuevoClienteActionPerformed
+
+    private void btnGuardarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarProveedorActionPerformed
+        // TODO add your handling code here:
+        if (    !"".equals(txtRucProveedor.getText()) || 
+                !"".equals(txtNombreProveedor.getText()) || 
+                !"".equals(txtTelefonoProveedor.getText()) || 
+                !"".equals(txtDireccionProveedor.getText()) || 
+                !"".equals(txtRazonProveedor.getText()) ) {
+                
+            pr.setRuc(txtRucProveedor.getText());
+            pr.setNombre(txtNombreProveedor.getText());
+            pr.setTelefono(txtTelefonoProveedor.getText());
+            pr.setDireccion(txtDireccionProveedor.getText());
+            pr.setRazon(txtRazonProveedor.getText());
+            PrDao.RegistrarProveedor(pr);
+            JOptionPane.showMessageDialog(null, "Proveedor Registrado");
+        } else {
+            JOptionPane.showMessageDialog(null, "Los campos esta vacios");
+        }
+    }//GEN-LAST:event_btnGuardarProveedorActionPerformed
+
+    private void txtRucProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRucProveedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRucProveedorActionPerformed
 
     /**
      * @param args the command line arguments
