@@ -851,6 +851,11 @@ public class Sistema extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tablaProducto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaProductoMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(tablaProducto);
         if (tablaProducto.getColumnModel().getColumnCount() > 0) {
             tablaProducto.getColumnModel().getColumn(0).setPreferredWidth(6);
@@ -1410,6 +1415,18 @@ public class Sistema extends javax.swing.JFrame {
         ListarProductos();        
         jTabbedPane1.setSelectedIndex(3);
     }//GEN-LAST:event_btnProductosActionPerformed
+
+    private void tablaProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProductoMouseClicked
+        // TODO add your handling code here:
+        int fila = tablaProducto.rowAtPoint(evt.getPoint());
+        txtIdProd.setText(tablaProducto.getValueAt(fila, 0).toString());
+        txtCodigoProduc.setText(tablaProducto.getValueAt(fila, 1).toString());
+        txtDescripcionProduc.setText(tablaProducto.getValueAt(fila, 2).toString());
+        cbxProveedorProduc.setSelectedItem(tablaProducto.getValueAt(fila, 3).toString());
+        txtCantidadProduc.setText(tablaProducto.getValueAt(fila, 4).toString());
+        txtPrecioProduc.setText(tablaProducto.getValueAt(fila, 5).toString());
+
+    }//GEN-LAST:event_tablaProductoMouseClicked
 
     /**
      * @param args the command line arguments
