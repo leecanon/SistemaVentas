@@ -1832,7 +1832,7 @@ public class Sistema extends javax.swing.JFrame {
         txtCantidadVenta.setText("");
         txtStockDisponible.setText("");
         txtPrecioVenta.setText("");
-        //txtIdVentas.setText("");
+        txtIdVentas.setText("");
     }
     
     
@@ -1847,12 +1847,11 @@ public class Sistema extends javax.swing.JFrame {
     }
      
     private void RegistrarDetalle() {
-        //int id = Vdao.IdVenta();
+        int id = Vdao.IdVenta();
         for (int i = 0; i < tablaVenta.getRowCount(); i++) {
             String cod = tablaVenta.getValueAt(i, 0).toString();
             int cant = Integer.parseInt(tablaVenta.getValueAt(i, 2).toString());
             double precio = Double.parseDouble(tablaVenta.getValueAt(i, 3).toString());
-            int id = 7;
             Dv.setCod_pro(cod);
             Dv.setCantidad(cant);
             Dv.setPrecio(precio);
