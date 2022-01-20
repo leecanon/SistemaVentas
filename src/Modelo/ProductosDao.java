@@ -113,7 +113,7 @@ public class ProductosDao {
            }
        }
    }
-   /*
+   
     public Productos BuscarPro(String cod){
         Productos producto = new Productos();
         String sql = "SELECT * FROM productos WHERE codigo = ?";
@@ -133,6 +133,8 @@ public class ProductosDao {
         }
         return producto;
     }
+    
+    /*
     public Productos BuscarId(int id){
         Productos pro = new Productos();
         String sql = "SELECT pr.id AS id_proveedor, pr.nombre AS nombre_proveedor, p.* FROM proveedor pr INNER JOIN productos p ON p.proveedor = pr.id WHERE p.id = ?";
