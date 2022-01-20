@@ -1635,6 +1635,7 @@ public class Sistema extends javax.swing.JFrame {
         // TODO add your handling code here:
         RegistrarVenta();
         RegistrarDetalle();
+        ActualizarStock();
     }//GEN-LAST:event_btnGenerarVentaActionPerformed
 
     /**
@@ -1861,18 +1862,18 @@ public class Sistema extends javax.swing.JFrame {
         /*int cliente = Integer.parseInt(txtIdCV.getText());
         Vdao.pdfV(id, cliente, Totalpagar, LabelVendedor.getText());*/
     }
-    /*
+    
     private void ActualizarStock() {
-        for (int i = 0; i < TableVenta.getRowCount(); i++) {
-            int id = Integer.parseInt(TableVenta.getValueAt(i, 0).toString());
-            int cant = Integer.parseInt(TableVenta.getValueAt(i, 2).toString());
-            pro = proDao.BuscarId(id);
+        for (int i = 0; i < tablaVenta.getRowCount(); i++) {
+            String cod = tablaVenta.getValueAt(i, 0).toString();
+            int cant = Integer.parseInt(tablaVenta.getValueAt(i, 2).toString());
+            pro = proDao.BuscarPro(cod);
             int StockActual = pro.getStock() - cant;
-            Vdao.ActualizarStock(StockActual, id);
+            Vdao.ActualizarStock(StockActual, cod);
 
         }
     }
-
+    /*
     private void LimpiarTableVenta() {
         tmp = (DefaultTableModel) TableVenta.getModel();
         int fila = TableVenta.getRowCount();

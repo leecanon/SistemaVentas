@@ -95,14 +95,14 @@ public class VentaDao {
         }
         return r;
     }
-    /*
-    public boolean ActualizarStock(int cant, int id){
-        String sql = "UPDATE productos SET stock = ? WHERE id = ?";
+    
+    public boolean ActualizarStock(int cant, String cod){
+        String sql = "UPDATE productos SET stock = ? WHERE codigo = ?";
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
             ps.setInt(1,cant);
-            ps.setInt(2, id);
+            ps.setString(2, cod);
             ps.execute();
             return true;
         } catch (SQLException e) {
@@ -111,6 +111,7 @@ public class VentaDao {
         }
     }
     
+    /*
     public List Listarventas(){
        List<Venta> ListaVenta = new ArrayList();
        String sql = "SELECT c.id AS id_cli, c.nombre, v.* FROM clientes c INNER JOIN ventas v ON c.id = v.cliente";
