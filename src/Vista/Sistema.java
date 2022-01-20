@@ -24,7 +24,7 @@ public class Sistema extends javax.swing.JFrame {
     Productos pro = new Productos();
     ProductosDao proDao = new ProductosDao();
     int item;
-    
+    double Totalpagar = 0.00;
     /*
     Venta v = new Venta();
     VentaDao Vdao = new VentaDao();
@@ -36,7 +36,7 @@ public class Sistema extends javax.swing.JFrame {
     DefaultTableModel modelo = new DefaultTableModel();
     DefaultTableModel tmp = new DefaultTableModel();
     int item;
-    double Totalpagar = 0.00;*/
+    */
     
     DefaultTableModel modelo = new DefaultTableModel();
     DefaultTableModel model = new DefaultTableModel();
@@ -1515,11 +1515,7 @@ public class Sistema extends javax.swing.JFrame {
                     txtStockDisponible.setText("" + pro.getStock());
                     txtCantidadVenta.requestFocus();
                 } else {
-                    //LimparVenta();
-                    
-                    txtDescripcionVenta.setText("");
-                    txtPrecioVenta.setText("");
-                    txtStockDisponible.setText("");
+                    LimparVenta();
                     txtCodigoVenta.requestFocus();
                 }
             } else {
@@ -1542,6 +1538,12 @@ public class Sistema extends javax.swing.JFrame {
                 if (stock >= cant) {
                     item = item + 1;
                     model = (DefaultTableModel) tablaVenta.getModel();
+                    for (int i = 0; i < tablaVenta.getRowCount(); i++) {
+                        if (tablaVenta.getValueAt(i, 1).equals(txtDescripcionVenta.getText())) {
+                            JOptionPane.showMessageDialog(null, "El producto ya esta registrado");
+                            return;
+                        }
+                    }
                     ArrayList lista = new ArrayList();
                     lista.add(item);
                     lista.add(id);
@@ -1557,13 +1559,9 @@ public class Sistema extends javax.swing.JFrame {
                     O[4] = lista.get(5);
                     model.addRow(O);
                     tablaVenta.setModel(model);
-                    /*for (int i = 0; i < tablaVenta.getRowCount(); i++) {
-                    if (tablaVenta.getValueAt(i, 1).equals(txtDescripcionVenta.getText())) {
-                    JOptionPane.showMessageDialog(null, "El producto ya esta registrado");
-                    return;
-                    }
-                    }*/
-                   
+                    TotalPagar();
+                    LimparVenta();
+                    txtCodigoVenta.requestFocus();
                 } else {
                     JOptionPane.showMessageDialog(null, "Stock no disponible");
                 }
@@ -1747,26 +1745,28 @@ public class Sistema extends javax.swing.JFrame {
         txtCantidadProduc.setText("");
         txtPrecioProduc.setText("");
     }
-    /*     
+        
     private void TotalPagar() {
         Totalpagar = 0.00;
-        int numFila = TableVenta.getRowCount();
+        int numFila = tablaVenta.getRowCount();
         for (int i = 0; i < numFila; i++) {
-            double cal = Double.parseDouble(String.valueOf(TableVenta.getModel().getValueAt(i, 4)));
+            double cal = Double.parseDouble(String.valueOf(tablaVenta.getModel().getValueAt(i, 4)));
             Totalpagar = Totalpagar + cal;
         }
-        LabelTotal.setText(String.format("%.2f", Totalpagar));
+        labelTotal.setText(String.format("%.2f", Totalpagar));
     }
-
+    
+    
     private void LimparVenta() {
         txtCodigoVenta.setText("");
         txtDescripcionVenta.setText("");
         txtCantidadVenta.setText("");
         txtStockDisponible.setText("");
         txtPrecioVenta.setText("");
-        txtIdVenta.setText("");
+        //txtIdVentas.setText("");
     }
-
+    
+    /* 
     private void RegistrarVenta() {
         int cliente = Integer.parseInt(txtIdCV.getText());
         String vendedor = LabelVendedor.getText();
