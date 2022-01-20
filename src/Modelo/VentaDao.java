@@ -36,7 +36,7 @@ public class VentaDao {
     PreparedStatement ps;
     ResultSet rs;
     int r;
-    /*
+    
     public int IdVenta(){
         int id = 0;
         String sql = "SELECT MAX(id) FROM ventas";
@@ -52,8 +52,7 @@ public class VentaDao {
         }
         return id;
     }
-    /*
-    */
+   
     public int RegistrarVenta(Venta v){
         String sql = "INSERT INTO ventas (cliente, vendedor, total) VALUES (?,?,?)";
         try {
