@@ -42,7 +42,7 @@ public class Sistema extends javax.swing.JFrame {
     */
     
     DefaultTableModel modelo = new DefaultTableModel();
-    DefaultTableModel model = new DefaultTableModel();
+    //DefaultTableModel model = new DefaultTableModel();
     
             
     public Sistema() {
@@ -50,6 +50,8 @@ public class Sistema extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         txtIdCliente.setVisible(false);
         txtIdProveedor.setVisible(false);
+        txtIdProduc.setVisible(false);
+        txtIdVentas.setVisible(false);
         AutoCompleteDecorator.decorate(cbxProveedorProduc);
         proDao.ConsultarProveedor(cbxProveedorProduc);
     }
@@ -1227,6 +1229,7 @@ public class Sistema extends javax.swing.JFrame {
 
     private void btnNuevaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaVentaActionPerformed
         // TODO add your handling code here:
+        jTabbedPane1.setSelectedIndex(0);
     }//GEN-LAST:event_btnNuevaVentaActionPerformed
 
     private void txtCodigoVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoVentaActionPerformed
@@ -1567,7 +1570,7 @@ public class Sistema extends javax.swing.JFrame {
                 int stock = Integer.parseInt(txtStockDisponible.getText());
                 if (stock >= cant) {
                     item = item + 1;
-                    model = (DefaultTableModel) tablaVenta.getModel();
+                    DefaultTableModel tmp = (DefaultTableModel) tablaVenta.getModel();
                     for (int i = 0; i < tablaVenta.getRowCount(); i++) {
                         if (tablaVenta.getValueAt(i, 1).equals(txtDescripcionVenta.getText())) {
                             JOptionPane.showMessageDialog(null, "El producto ya esta registrado");
@@ -1587,8 +1590,8 @@ public class Sistema extends javax.swing.JFrame {
                     O[2] = lista.get(3);
                     O[3] = lista.get(4);
                     O[4] = lista.get(5);
-                    model.addRow(O);
-                    tablaVenta.setModel(model);
+                    tmp.addRow(O);
+                    tablaVenta.setModel(tmp);
                     TotalPagar();
                     LimparVenta();
                     txtCodigoVenta.requestFocus();
@@ -1798,6 +1801,7 @@ public class Sistema extends javax.swing.JFrame {
         txtTelefonoProveedor.setText("");
         txtDireccionProveedor.setText("");
         txtRazonProveedor.setText("");
+        txtIdVentas.setText("");
     }
     
     
