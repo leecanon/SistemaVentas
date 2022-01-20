@@ -1,14 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Modelo;
 
-/**
- *
- * @author Usuario
- */
+package Modelo;
+    
 public class Detalle {
     private int id;
     private String cod_pro;

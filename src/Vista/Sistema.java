@@ -1635,7 +1635,7 @@ public class Sistema extends javax.swing.JFrame {
         // TODO add your handling code here:
         RegistrarVenta();
         RegistrarDetalle();
-        ActualizarStock();
+        //ActualizarStock();
     }//GEN-LAST:event_btnGenerarVentaActionPerformed
 
     /**
@@ -1847,32 +1847,37 @@ public class Sistema extends javax.swing.JFrame {
     }
      
     private void RegistrarDetalle() {
-        int id = Vdao.IdVenta();
+        //int id = Vdao.IdVenta();
         for (int i = 0; i < tablaVenta.getRowCount(); i++) {
-            String cod_pro = tablaVenta.getValueAt(i, 0).toString();
+            String cod = tablaVenta.getValueAt(i, 0).toString();
             int cant = Integer.parseInt(tablaVenta.getValueAt(i, 2).toString());
             double precio = Double.parseDouble(tablaVenta.getValueAt(i, 3).toString());
-            Dv.setCod_pro(cod_pro);
+            int id = 7;
+            Dv.setCod_pro(cod);
             Dv.setCantidad(cant);
             Dv.setPrecio(precio);
             Dv.setId(id);
             Vdao.RegistrarDetalle(Dv);
 
         }
+    }
+}
         /*int cliente = Integer.parseInt(txtIdCV.getText());
         Vdao.pdfV(id, cliente, Totalpagar, LabelVendedor.getText());*/
-    }
     
+    
+    /* 
     private void ActualizarStock() {
-        for (int i = 0; i < tablaVenta.getRowCount(); i++) {
-            String cod = tablaVenta.getValueAt(i, 0).toString();
-            int cant = Integer.parseInt(tablaVenta.getValueAt(i, 2).toString());
-            pro = proDao.BuscarPro(cod);
-            int StockActual = pro.getStock() - cant;
-            Vdao.ActualizarStock(StockActual, cod);
-
+    for (int i = 0; i < tablaVenta.getRowCount(); i++) {
+    String cod_proa = tablaVenta.getValueAt(i, 0).toString();
+    int cantidad = Integer.parseInt(tablaVenta.getValueAt(i, 2).toString());
+    pro = proDao.BuscarPro(cod_proa);
+    int StockActual = pro.getStock() - cantidad;
+    Vdao.ActualizarStock(StockActual, cod_proa);
+    
         }
     }
+    */
     /*
     private void LimpiarTableVenta() {
         tmp = (DefaultTableModel) TableVenta.getModel();
@@ -1901,4 +1906,4 @@ public class Sistema extends javax.swing.JFrame {
         }
     } */
     
-}
+
