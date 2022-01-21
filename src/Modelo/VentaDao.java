@@ -88,22 +88,24 @@ public class VentaDao {
         return r;
     } 
     
-    /* 
-    public boolean ActualizarStock(int cant, String cod_proa){
+    
+    public boolean ActualizarStock(int cant, String cod){
     String sql = "UPDATE productos SET stock = ? WHERE codigo = ?";
+                  //UPDATE `productos` SET `stock` = '30' WHERE `productos`.`id` = 9
+
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
             ps.setInt(1, cant);
-            ps.setString(2, cod_proa);
+            ps.setString(2, cod);
             ps.execute();
             return true;
             } catch (SQLException e) {
                 System.out.println(e.toString());
                 return false;
         }
-    }*/
-    
+    }
+   
     /*
     public List Listarventas(){
        List<Venta> ListaVenta = new ArrayList();
